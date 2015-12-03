@@ -1,0 +1,231 @@
+<!doctype html>
+<html><head>
+<meta charset="utf-8">
+<title>Vertical Bootstrap 3 Tabs Widget</title>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+<script src="js/sketch.js"></script>
+
+<style>
+body {
+  background-color: #ddd;
+}
+
+h3 {
+  margin-top: 0;
+}
+
+.tabs-left {
+  margin-top: 3rem;
+}
+
+.nav-tabs {
+  float: left;
+  border-bottom: 0;
+}
+.nav-tabs li {
+  float: none;
+  margin: 0;
+}
+.nav-tabs li a {
+  margin-right: 0;
+  border: 0;
+  background-color: #c0392b;
+}
+.nav-tabs li a:hover {
+  background-color: #e74c3c;
+}
+.nav-tabs .glyphicon {
+  color: #fff;
+}
+.nav-tabs .active .glyphicon {
+  color: #333;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+  border: 0;
+}
+
+.tab-content {
+  margin-left: 45px;
+}
+.tab-content .tab-pane {
+  display: none;
+  background-color: #fff;
+  padding: 1.6rem;
+  overflow-y: auto;
+}
+.tab-content .active {
+  display: block;
+}
+.date-form { margin: 10px; }
+label.control-label span { cursor: pointer; }
+</style>
+</head>
+
+<body>
+<div class="container">
+<h1 align="center">Instant Notes</h1>
+ <h3 align="center"><font color="#000000" ><span id='ct'  ></span></font></h3>
+  <div class="row">
+    <div class="col-md-4 col-sm-5">
+      <div class="tabs-left">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#home" data-toggle="tab"><img src="images/notes.png"/></a></li>
+          <li><a href="#profile" data-toggle="tab"><img src="images/mail.png"/></a></li>
+          <li><a href="#favourite" data-toggle="tab"><img src="images/map.png"/></a></li>
+          <li><a href="#download" data-toggle="tab"><span class="glyphicon glyphicon-cloud-download"></span></a></li>
+          <li><a href="#stars" data-toggle="tab"><span class="glyphicon glyphicon-star"></span></a></li>
+          <li><a href="#settings" data-toggle="tab"><span class="glyphicon glyphicon-cog"></span></a></li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+        
+  <div class="tab-pane active" id="home">
+  			 <div class="tools">
+ 				<a href="#tools_sketch" data-tool="marker">Marker&nbsp; &nbsp;</a>
+  				<a href="#tools_sketch" data-tool="eraser">Eraser</a>
+			 </div>
+			<canvas id="tools_sketch" width="310" height="330" ></canvas>
+  </div>
+  
+  <div class="tab-pane" id="profile" >
+		
+        <!-- 16:9 aspect ratio -->
+<!--<div class="embed-responsive embed-responsive-16by9">
+  <iframe class="embed-responsive-item" src="contact.php" height="330"></iframe>
+</div>-->
+
+<!-- 4:3 aspect ratio -->
+<div class="embed-responsive embed-responsive-4by3" style="height:330px;">
+  <iframe class="embed-responsive-item" src="contact.php" ></iframe>
+</div>
+    	<!--<iframe class="embed-responsive-item" src="contact.php" width="290" height="360"></iframe>-->
+        
+  </div>
+  
+  <div class="tab-pane" id="favourite">
+  		<p id="demo"></p>
+   		 <div id="mapholder"></div>
+         	
+  </div>
+  
+  
+  <div class="tab-pane" id="download">
+    <p>Vestibulum viverra ex ut arcu lobortis tempor. Vivamus suscipit dictum nisl gravida malesuada. Nulla et quam eget massa cursus sodales a quis augue. Maecenas ultrices vitae felis ut faucibus. Vivamus vitae convallis nunc, quis vestibulum eros. Morbi vel purus nec justo efficitur consequat ac sit amet risus. Duis laoreet hendrerit bibendum. Nam tempor volutpat sagittis.</p>
+  </div>
+  <div class="tab-pane" id="stars">
+    <p>Duis laoreet hendrerit bibendum. Nam tempor volutpat sagittis. Etiam convallis posuere rhoncus. Donec sit amet faucibus magna, vel fermentum velit. Vivamus euismod cursus sollicitudin. Aliquam tortor libero, venenatis id nibh consectetur, pretium tincidunt est. Nullam neque odio, auctor in nisl vel, facilisis convallis massa. </p>
+  </div>
+  <div class="tab-pane" id="settings">
+    <p>Curabitur vel urna vestibulum, egestas sapien accumsan, varius ipsum. Aenean eu elit laoreet, sagittis velit in, facilisis ligula. Maecenas dictum, lacus sed faucibus lobortis, turpis ante ultricies ligula, et posuere nisl mauris non erat.</p>
+  </div>
+</div><!-- /tab-content -->
+      </div><!-- /tabbable -->
+    </div><!-- /col -->
+  </div><!-- /row -->
+</div><!-- /container -->
+
+<script>
+//==============================================================
+function display_c(){
+var refresh=1000; // Refresh rate in milli seconds
+mytime=setTimeout('display_ct()',refresh)
+}
+
+function display_ct() {
+var strcount
+var x = new Date()
+x=x.toLocaleString();
+
+document.getElementById('ct').innerHTML = x;
+tt=display_c();
+}
+
+
+
+//============================================================
+var tabsFn = (function() {
+  
+  function init() {
+    setHeight();
+  }
+  
+  function setHeight() {
+    var $tabPane = $('.tab-pane'),
+        tabsHeight = $('.nav-tabs').height();
+    
+    $tabPane.css({
+      height: 400
+    });
+  }
+    
+  $(init);
+})();
+</script>
+//================================================================
+<script>
+
+ 
+$('#tools_sketch').sketch({defaultColor: "#000"});
+display_ct();
+
+$(".date-picker").datepicker();
+
+$(".date-picker").on("change", function () {
+	alert("dfdf");
+    var id = $(this).attr("id");
+    var val = $("label[for='" + id + "']").text();
+    $("#msg").text(val + " changed");
+});
+if (!Modernizr.touch || !Modernizr.inputtypes.date) {
+        $('input[type=date]')
+            .attr('type', 'text')
+            .datepicker({
+                // Consistent format with the HTML5 picker
+                dateFormat: 'yy-mm-dd'
+            });
+    }
+</script>
+ //=================================================================
+ <script>
+ getLocation();
+var x = document.getElementById("demo");
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+    var latlon = position.coords.latitude + "," + position.coords.longitude;
+
+    var img_url = "http://maps.googleapis.com/maps/api/staticmap?center="
+    +latlon+"&zoom=14&size=300x400&sensor=false";
+    document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
+}
+
+function showError(error) {
+    switch(error.code) {
+        case error.PERMISSION_DENIED:
+            x.innerHTML = "User denied the request for Geolocation."
+            break;
+        case error.POSITION_UNAVAILABLE:
+            x.innerHTML = "Location information is unavailable."
+            break;
+        case error.TIMEOUT:
+            x.innerHTML = "The request to get user location timed out."
+            break;
+        case error.UNKNOWN_ERROR:
+            x.innerHTML = "An unknown error occurred."
+            break;
+    }
+}
+</script>
+</body>
+</html>
